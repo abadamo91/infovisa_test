@@ -1,9 +1,13 @@
+import platform
 from selenium import webdriver
 import unittest
 
+if 'Windows' in platform.platform():
+    PATH = 'C:\\Users\\anthony\\AppData\\Local\\Programs\\Python\\Python37\\chromedriver_win32\\chromedriver.exe'
+
 class infovisaAutomationTests(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome(PATH)
         self.driver.implicitly_wait(10)
         self.driver.maximize_window()
         self.driver.get('https://www.infovisa.com/contact-us')
