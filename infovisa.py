@@ -34,6 +34,23 @@ class infovisaAutomationTests(unittest.TestCase):
         self.phone = self.driver.find_element_by_name('submitted[phone]')
         self.assertIn("form-number", self.phone.get_attribute('class'))
 
+    def test_phone_only_letters(self):
+        self.name = self.driver.find_element_by_name('submitted[name]')
+        self.name.send_keys("test")
+        self.email = self.driver.find_element_by_name('submitted[email]')
+        self.email.send_keys("test@test.com")
+        self.company = self.driver.find_element_by_name('submitted[company___organization]')
+        self.company.send_keys("test")
+        self.comment = self.driver.find_element_by_name('submitted[comments]')
+        self.comment.send_keys("QA engineer interview test")
+        self.phone = self.driver.find_element_by_name('submitted[phone]')
+        self.phone.send_keys("test phone")
+        self.submit = self.driver.find_element_by_name('op')
+        self.submit.click()
+        error_message = self.driver.find_element_by_xpath('//*[@id="center"]/div[1]').text
+        self.assertEqual(error_message,
+                         "ERROR MESSAGE\nPhone field value must format numbers as \"12,345.6789\".")
+
     def test_comment_required(self):
         self.comment = self.driver.find_element_by_name('submitted[comments]')
         self.assertTrue(self.comment.get_attribute('required'))
