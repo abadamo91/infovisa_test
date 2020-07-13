@@ -4,6 +4,8 @@ import unittest
 
 if 'Windows' in platform.platform():
     PATH = 'C:\\Users\\anthony\\AppData\\Local\\Programs\\Python\\Python37\\chromedriver_win32\\chromedriver.exe'
+elif 'Linux' in platform.platform():
+    PATH = '/usr/lib/chromium-browser/chromedriver'
 
 class infovisaAutomationTests(unittest.TestCase):
     def setUp(self):
@@ -41,7 +43,7 @@ class infovisaAutomationTests(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=1)
+    unittest.main(verbosity=2)
 
 
 
